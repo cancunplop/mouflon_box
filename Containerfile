@@ -35,7 +35,8 @@ RUN curl -Lo ble.tar.xz https://github.com/akinomyoga/ble.sh/releases/download/v
     rm -f ble.tar.xz && rmdir /usr/share/blesh/ble-0.4.0-devel3
 
 # Lunarvim
-RUN LV_BRANCH='release-1.3/neovim-0.9' INSTALL_PREFIX='/' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh) --no-install-dependencies --yes
+RUN LV_BRANCH='release-1.3/neovim-0.9'  XDG_DATA_HOME='/usr/share' INSTALL_PREFIX='/usr' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh) --no-install-dependencies --yes
+RUN chmod 755 /usr/bin/lvim
 RUN ln -nfs /usr/lib/libsqlite3.so.0  /usr/lib/libsqlite3.so
 
 # bat extras
