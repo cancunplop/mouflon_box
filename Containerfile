@@ -40,8 +40,10 @@ RUN ln -nfs /usr/lib/libsqlite3.so.0  /usr/lib/libsqlite3.so
 
 # bat extras
 RUN curl -Lo extras.zip https://github.com/eth-p/bat-extras/releases/download/v2023.09.19/bat-extras-202309.19.zip && \
-    unzip extras.zip -d / && \
-    rm -f extras.zip
+    unzip extras.zip -d /tmp && \
+    mv /tmp/man/* /usr/share/man/man1/  && \
+    mv /tmp/bin/* /usr/bin/ && \
+    rm -rf extras.zip /tmp/doc
 
 # clean
 RUN apk del \
