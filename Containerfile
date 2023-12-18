@@ -38,13 +38,6 @@ RUN curl -Lo ble.tar.xz https://github.com/akinomyoga/ble.sh/releases/download/v
 RUN LV_BRANCH='release-1.3/neovim-0.9' INSTALL_PREFIX='/' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh) --no-install-dependencies --yes
 RUN ln -nfs /usr/lib/libsqlite3.so.0  /usr/lib/libsqlite3.so
 
-# bat catpuccin theme
-RUN git clone https://github.com/catppuccin/bat.git && \
-    mkdir -p "$(bat --config-dir)/themes" && \
-    cp bat/*.tmTheme "$(bat --config-dir)/themes" && \
-    bat cache --build && \
-    rm -rf bat
-
 # bat extras
 RUN curl -Lo extras.zip https://github.com/eth-p/bat-extras/releases/download/v2023.09.19/bat-extras-202309.19.zip && \
     unzip extras.zip -d / && \
