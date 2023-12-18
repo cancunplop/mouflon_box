@@ -11,6 +11,11 @@ RUN apk update && \
     grep -v '^#' /extra-packages | xargs apk add && \
     rm /extra-packages
 
+COPY extra-packages-testing /
+RUN grep -v '^#' /extra-packages-testing | \
+    xargs apk add --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/ && \
+    rm /extra-packages-testing
+
 # DUF
 RUN apk add --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/ duf
 
