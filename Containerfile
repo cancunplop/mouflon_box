@@ -27,7 +27,7 @@ RUN curl -Lo atuin.tgz https://github.com/atuinsh/atuin/releases/download/v17.1.
     cp -r atuin-*/completions /usr/share/atuin && \
     rm -rf atuin-* atuin.tgz
 
-# Atuin pre-req : ble.sh
+# ble.sh
 RUN curl -Lo ble.tar.xz https://github.com/akinomyoga/ble.sh/releases/download/v0.4.0-devel3/ble-0.4.0-devel3.tar.xz && \
     mkdir /usr/share/blesh && \
     tar xJf ble.tar.xz -C /usr/share/blesh && \

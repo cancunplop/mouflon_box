@@ -7,9 +7,11 @@ chezmoi
 clipboard
 cosign
 dbus-x11
+delta
 direnv
 dust
 eza
+entr
 fd
 font-hack-nerd
 fzf
@@ -20,6 +22,7 @@ git
 github-cli
 gitlab-release-cli
 hyperfine
+htop
 just
 lazygit
 make
@@ -40,3 +43,4 @@ starship
 tmux
 wl-clipboard
 zstd
+zoxide
