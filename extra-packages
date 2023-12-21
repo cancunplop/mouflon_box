@@ -4,6 +4,9 @@ bat
 broot
 btop
 chezmoi
+chezmoi-fish-completion
+chezmoi-zsh-completion
+chezmoi-bash-completion
 clipboard
 cosign
 dbus-x11
