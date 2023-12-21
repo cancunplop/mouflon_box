@@ -41,6 +41,7 @@ speedtest-cli
 sqlite-libs
 starship
 tmux
-wl-clipboard
+#wl-clipboard
+xsel
 zstd
 zoxide
