@@ -19,6 +19,7 @@ fd
 font-hack-nerd
 fzf
 fzf-bash-plugin
+fzf-tmux
 g++
 gawk
 git
