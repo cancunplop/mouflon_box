@@ -1,3 +1,4 @@
+ag
 age
 #atuin
 bat
@@ -9,9 +10,11 @@ chezmoi-zsh-completion
 chezmoi-bash-completion
 clipboard
 cosign
+curlie
 dbus-x11
 delta
 direnv
+dog
 dust
 eza
 entr
@@ -19,15 +22,20 @@ fd
 font-hack-nerd
 fzf
 fzf-bash-plugin
+fzf-fish-plugin
+fzf-zsh-plugin
 fzf-tmux
 g++
 gawk
 git
 github-cli
 gitlab-release-cli
+gping
 hyperfine
 htop
+httpie
 just
+jq
 lazygit
 make
 musl-dev
@@ -47,5 +55,6 @@ starship
 tmux
 #wl-clipboard
 xsel
+yq
 zstd
 zoxide

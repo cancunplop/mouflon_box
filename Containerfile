@@ -16,8 +16,10 @@ RUN grep -v '^#' /extra-packages-testing | \
   xargs apk add --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/ && \
   rm /extra-packages-testing
 
-# DUF
-RUN apk add --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/ duf
+COPY extra-packages-pip /
+RUN grep -v '^#' /extra-packages-pip | \
+  xargs pip install  --break-system-packages &&\
+  rm /extra-packages-pip
 
 # Atuin
 RUN curl -Lo atuin.zip https://github.com/atuinsh/atuin/releases/download/v17.2.1/atuin-v17.2.1-x86_64-unknown-linux-musl.tar.gz.zip && \
@@ -26,6 +28,9 @@ RUN curl -Lo atuin.zip https://github.com/atuinsh/atuin/releases/download/v17.2.
   tar xzf atuin-*.tar.gz && \
   cp atuin-*/atuin /usr/bin && \
   cp -r atuin-*/completions /usr/share/atuin && \
+  ln -nfs /usr/share/atuin/completions/_atuin /usr/share/zsh/site-functions/ && \
+  ln -nfs /usr/share/atuin/completions/atuin.bash /usr/share/bash-completion/ &&\
+  ln -nfs /usr/share/atuin/completions/atuin.fish /usr/share/fish/completions/ &&\
   rm -rf atuin-* atuin.tgz
 
 # ble.sh
@@ -34,6 +39,12 @@ RUN curl -Lo ble.tar.xz https://github.com/akinomyoga/ble.sh/releases/download/v
   tar xJf ble.tar.xz -C /usr/share/blesh && \
   mv /usr/share/blesh/ble-0.4.0-devel3/* /usr/share/blesh && \
   rm -f ble.tar.xz && rmdir /usr/share/blesh/ble-0.4.0-devel3
+
+# Cheat
+RUN wget https://github.com/cheat/cheat/releases/download/4.4.2/cheat-linux-amd64.gz \
+  && gunzip cheat-linux-amd64.gz \
+  && chmod +x cheat-linux-amd64 \
+  && sudo mv cheat-linux-amd64 /usr/local/bin/cheat
 
 # Lunarvim
 RUN LV_BRANCH='release-1.3/neovim-0.9'  XDG_DATA_HOME='/usr/share' INSTALL_PREFIX='/usr' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh) --no-install-dependencies --yes
