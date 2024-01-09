@@ -1,4 +1,3 @@
-ag
 age
 #atuin
 bat
@@ -52,6 +51,7 @@ ripgrep
 speedtest-cli
 sqlite-libs
 starship
+the_silver_searcher
 tmux
 #wl-clipboard
 xsel
