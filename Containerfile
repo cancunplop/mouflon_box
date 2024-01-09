@@ -61,6 +61,11 @@ RUN curl -Lo extras.zip https://github.com/eth-p/bat-extras/releases/download/v2
   mv /tmp/bin/* /usr/bin/ && \
   rm -rf extras.zip /tmp/doc
 
+# fastfetch
+RUN curl -Lo fastfetch.tgz https://github.com/fastfetch-cli/fastfetch/releases/download/2.5.0/fastfetch-2.5.0-Linux.tar.gz && \
+  tar -xzf fastfetch.tgz -C / && \
+  rm fastfetch.tgz
+
 # vivid : https://github.com/sharkdp/vivid
 RUN curl -Lo vivid.tgz https://github.com/sharkdp/vivid/releases/download/v0.9.0/vivid-v0.9.0-x86_64-unknown-linux-musl.tar.gz && \
   tar xzf vivid.tgz -C /tmp && \
