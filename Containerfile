@@ -54,7 +54,7 @@ RUN sed -i 's#"/root/.cache/lvim"#"$HOME/.cache/lvim"#g' /usr/bin/lvim
 RUN ln -nfs /usr/lib/libsqlite3.so.0  /usr/lib/libsqlite3.so
 
 # bat extras
-RUN curl -Lo extras.zip https://github.com/eth-p/bat-extras/releases/download/v2023.09.19/bat-extras-202309.19.zip && \
+RUN curl -Lo extras.zip https://github.com/eth-p/bat-extras/releases/download/v2024.07.10/bat-extras-2024.07.10.zip && \
   unzip extras.zip -d /tmp && \
   mv /tmp/man/* /usr/share/man/man1/  && \
   mv /tmp/bin/* /usr/bin/ && \
