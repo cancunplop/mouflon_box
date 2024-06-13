@@ -22,14 +22,10 @@ RUN grep -v '^#' /extra-packages-pip | \
   rm /extra-packages-pip
 
 # Atuin
-RUN curl -Lo atuin.tar.gz https://github.com/atuinsh/atuin/releases/download/v18.3.0/atuin-v18.3.0-x86_64-unknown-linux-musl.tar.gz && \
+RUN curl -Lo atuin.tar.gz https://github.com/atuinsh/atuin/releases/download/v18.3.0/atuin-x86_64-unknown-linux-musl.tar.gz && \
   mkdir /usr/share/atuin && \
   tar xzf atuin.tar.gz && \
   cp atuin-*/atuin /usr/bin && \
-  cp -r atuin-*/completions /usr/share/atuin && \
-  ln -nfs /usr/share/atuin/completions/_atuin /usr/share/zsh/site-functions/ && \
-  ln -nfs /usr/share/atuin/completions/atuin.bash /usr/share/bash-completion/ &&\
-  ln -nfs /usr/share/atuin/completions/atuin.fish /usr/share/fish/completions/ &&\
   rm -rf atuin-* atuin.tar.gz
 
 # ble.sh
