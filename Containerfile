@@ -46,7 +46,7 @@ RUN wget https://github.com/cheat/cheat/releases/download/4.4.2/cheat-linux-amd6
   && sudo mv cheat-linux-amd64 /usr/local/bin/cheat
 
 # Lunarvim
-RUN LV_BRANCH='release-1.3/neovim-0.9'  XDG_DATA_HOME='/usr/share' INSTALL_PREFIX='/usr' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh) --no-install-dependencies --yes
+RUN LV_BRANCH='release-1.4/neovim-0.9'  XDG_DATA_HOME='/usr/share' INSTALL_PREFIX='/usr' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.4/neovim-0.9/utils/installer/install.sh) --no-install-dependencies --yes
 RUN chmod 755 /usr/bin/lvim
 RUN sed -i 's#"/usr/share/lunarvim"#"$HOME/.local/share/lunarvim"#g' /usr/bin/lvim
 RUN sed -i 's#"/root/.config/lvim"#"$HOME/.config/lvim"#g' /usr/bin/lvim
