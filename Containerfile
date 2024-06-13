@@ -61,7 +61,7 @@ RUN curl -Lo extras.zip https://github.com/eth-p/bat-extras/releases/download/v2
   rm -rf extras.zip /tmp/doc
 
 # fastfetch
-RUN curl -Lo fastfetch.tgz https://github.com/fastfetch-cli/fastfetch/releases/download/2.5.0/fastfetch-2.5.0-Linux.tar.gz && \
+RUN curl -Lo fastfetch.tgz https://github.com/fastfetch-cli/fastfetch/releases/download/2.15.0/fastfetch-2.15.0-Linux.tar.gz && \
   tar -xzf fastfetch.tgz -C / && \
   rm fastfetch.tgz
 
