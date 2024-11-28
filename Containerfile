@@ -5,6 +5,8 @@ LABEL com.github.containers.toolbox="true" \
   summary="A cloud-native terminal experience" \
   maintainer="CAncun <plop1@bawah.fr>"
 
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
 COPY extra-packages /
 RUN apk update && \
   apk upgrade && \
@@ -36,33 +38,33 @@ RUN curl -Lo ble.tar.xz https://github.com/akinomyoga/ble.sh/releases/download/v
   rm -f ble.tar.xz && rmdir /usr/share/blesh/ble-0.4.0-devel3
 
 # Cheat
-RUN wget https://github.com/cheat/cheat/releases/download/4.4.2/cheat-linux-amd64.gz \
+RUN curl -Lo  cheat-linux-amd64.gz https://github.com/cheat/cheat/releases/download/4.4.2/cheat-linux-amd64.gz \
   && gunzip cheat-linux-amd64.gz \
   && chmod +x cheat-linux-amd64 \
-  && sudo mv cheat-linux-amd64 /usr/local/bin/cheat
+  && mv cheat-linux-amd64 /usr/local/bin/cheat
 
 # Lunarvim
-RUN LV_BRANCH='release-1.4/neovim-0.9'  XDG_DATA_HOME='/usr/share' INSTALL_PREFIX='/usr' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.4/neovim-0.9/utils/installer/install.sh) --no-install-dependencies --yes
-RUN chmod 755 /usr/bin/lvim
-RUN sed -i 's#"/usr/share/lunarvim"#"$HOME/.local/share/lunarvim"#g' /usr/bin/lvim
-RUN sed -i 's#"/root/.config/lvim"#"$HOME/.config/lvim"#g' /usr/bin/lvim
-RUN sed -i 's#"/root/.cache/lvim"#"$HOME/.cache/lvim"#g' /usr/bin/lvim
-RUN ln -nfs /usr/lib/libsqlite3.so.0  /usr/lib/libsqlite3.so
+RUN LV_BRANCH='release-1.4/neovim-0.9'  XDG_DATA_HOME='/usr/share' INSTALL_PREFIX='/usr' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.4/neovim-0.9/utils/installer/install.sh) --no-install-dependencies --yes && \
+    chmod 755 /usr/bin/lvim && \
+    sed -i 's#"/usr/share/lunarvim"#"$HOME/.local/share/lunarvim"#g' /usr/bin/lvim && \
+    sed -i 's#"/root/.config/lvim"#"$HOME/.config/lvim"#g' /usr/bin/lvim && \
+    sed -i 's#"/root/.cache/lvim"#"$HOME/.cache/lvim"#g' /usr/bin/lvim && \
+    ln -nfs /usr/lib/libsqlite3.so.0  /usr/lib/libsqlite3.so
 
 # bat extras
-RUN curl -Lo extras.zip https://github.com/eth-p/bat-extras/releases/download/v2024.07.10/bat-extras-2024.07.10.zip && \
+RUN curl -Lo extras.zip https://github.com/eth-p/bat-extras/releases/download/v2024.08.24/bat-extras-2024.08.24.zip && \
   unzip extras.zip -d /tmp && \
   mv /tmp/man/* /usr/share/man/man1/  && \
   mv /tmp/bin/* /usr/bin/ && \
   rm -rf extras.zip /tmp/doc
 
 # fastfetch
-RUN curl -Lo fastfetch.tgz https://github.com/fastfetch-cli/fastfetch/releases/download/2.15.0/fastfetch-2.15.0-Linux.tar.gz && \
+RUN curl -Lo fastfetch.tgz https://github.com/fastfetch-cli/fastfetch/releases/download/2.30.1/fastfetch-musl-amd64.tar.gz && \
   tar -xzf fastfetch.tgz -C / && \
   rm fastfetch.tgz
 
 # vivid : https://github.com/sharkdp/vivid
-RUN curl -Lo vivid.tgz https://github.com/sharkdp/vivid/releases/download/v0.9.0/vivid-v0.9.0-x86_64-unknown-linux-musl.tar.gz && \
+RUN curl -Lo vivid.tgz https://github.com/sharkdp/vivid/releases/download/v0.10.1/vivid-v0.10.1-x86_64-unknown-linux-musl.tar.gz && \
   tar xzf vivid.tgz -C /tmp && \
   mv /tmp/vivid*/vivid /usr/bin/ && \
   rm -rf vivid.tgz /tmp/vivid*
@@ -73,11 +75,11 @@ RUN apk del \
   vimdiff
 
 
-RUN   ln -fs /bin/sh /usr/bin/sh && \
-  ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/docker && \
-  ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/flatpak && \ 
-  ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/podman && \
-  ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/rpm-ostree && \
-  ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/transactional-update
+RUN ln -fs /bin/sh /usr/bin/sh && \
+    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/docker && \
+    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/flatpak && \ 
+    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/podman && \
+    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/rpm-ostree && \
+    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/transactional-update
 
 
