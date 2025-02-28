@@ -24,7 +24,7 @@ RUN grep -v '^#' /extra-packages-pip | \
   rm /extra-packages-pip
 
 # Atuin
-RUN curl -Lo atuin.tar.gz https://github.com/atuinsh/atuin/releases/download/v18.3.0/atuin-x86_64-unknown-linux-musl.tar.gz && \
+RUN curl -Lo atuin.tar.gz https://github.com/atuinsh/atuin/releases/download/v18.4.0/atuin-x86_64-unknown-linux-musl.tar.gz && \
   mkdir /usr/share/atuin && \
   tar xzf atuin.tar.gz && \
   cp atuin-*/atuin /usr/bin && \
@@ -45,11 +45,11 @@ RUN curl -Lo  cheat-linux-amd64.gz https://github.com/cheat/cheat/releases/downl
 
 # Lunarvim
 RUN LV_BRANCH='release-1.4/neovim-0.9'  XDG_DATA_HOME='/usr/share' INSTALL_PREFIX='/usr' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.4/neovim-0.9/utils/installer/install.sh) --no-install-dependencies --yes && \
-    chmod 755 /usr/bin/lvim && \
-    sed -i 's#"/usr/share/lunarvim"#"$HOME/.local/share/lunarvim"#g' /usr/bin/lvim && \
-    sed -i 's#"/root/.config/lvim"#"$HOME/.config/lvim"#g' /usr/bin/lvim && \
-    sed -i 's#"/root/.cache/lvim"#"$HOME/.cache/lvim"#g' /usr/bin/lvim && \
-    ln -nfs /usr/lib/libsqlite3.so.0  /usr/lib/libsqlite3.so
+  chmod 755 /usr/bin/lvim && \
+  sed -i 's#"/usr/share/lunarvim"#"$HOME/.local/share/lunarvim"#g' /usr/bin/lvim && \
+  sed -i 's#"/root/.config/lvim"#"$HOME/.config/lvim"#g' /usr/bin/lvim && \
+  sed -i 's#"/root/.cache/lvim"#"$HOME/.cache/lvim"#g' /usr/bin/lvim && \
+  ln -nfs /usr/lib/libsqlite3.so.0  /usr/lib/libsqlite3.so
 
 # bat extras
 RUN curl -Lo extras.zip https://github.com/eth-p/bat-extras/releases/download/v2024.08.24/bat-extras-2024.08.24.zip && \
@@ -65,10 +65,10 @@ RUN apk del \
 
 
 RUN ln -fs /bin/sh /usr/bin/sh && \
-    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/docker && \
-    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/flatpak && \ 
-    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/podman && \
-    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/rpm-ostree && \
-    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/transactional-update
+  ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/docker && \
+  ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/flatpak && \ 
+  ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/podman && \
+  ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/rpm-ostree && \
+  ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/transactional-update
 
 
