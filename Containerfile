@@ -29,11 +29,8 @@ RUN if [ -s /extra-packages-pip ]; then \
   fi
 
 # Atuin
-RUN curl -Lo atuin.tar.gz https://github.com/atuinsh/atuin/releases/download/v18.4.0/atuin-x86_64-unknown-linux-musl.tar.gz && \
-  mkdir /usr/share/atuin && \
-  tar xzf atuin.tar.gz && \
-  cp atuin-*/atuin /usr/bin && \
-  rm -rf atuin-* atuin.tar.gz
+RUN curl -L https://github.com/atuinsh/atuin/releases/download/v18.4.0/atuin-x86_64-unknown-linux-musl.tar.gz | \
+  tar -xz --wildcards --no-anchored --strip-components 1 -C /usr/bin/ '*/atuin'
 
 # ble.sh
 RUN curl -Lo ble.tar.xz https://github.com/akinomyoga/ble.sh/releases/download/v0.4.0-devel3/ble-0.4.0-devel3.tar.xz && \
