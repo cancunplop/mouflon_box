@@ -5,6 +5,7 @@ LABEL com.github.containers.toolbox="true" \
   summary="A cloud-native terminal experience" \
   maintainer="CAncun <plop1@bawah.fr>"
 
+USER root 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 COPY extra-packages /
