@@ -8,20 +8,25 @@ LABEL com.github.containers.toolbox="true" \
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 COPY extra-packages /
-RUN apk update && \
+RUN if [ -s /extra-packages ]; then \
   apk upgrade && \
   grep -v '^#' /extra-packages | xargs apk add && \
-  rm /extra-packages
+  rm /extra-packages; \
+  fi
 
 COPY extra-packages-testing /
-RUN grep -v '^#' /extra-packages-testing | \
+RUN if [ -s /extra-packages-testing ]; then \
+  grep -v '^#' /extra-packages-testing | \
   xargs apk add --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/ && \
-  rm /extra-packages-testing
+  rm /extra-packages-testing; \
+  fi
 
 COPY extra-packages-pip /
-RUN grep -v '^#' /extra-packages-pip | \
+RUN if [ -s /extra-packages-pip ]; then \
+  grep -v '^#' /extra-packages-pip | \
   xargs pip install  --break-system-packages &&\
-  rm /extra-packages-pip
+  rm /extra-packages-pip; \
+  fi
 
 # Atuin
 RUN curl -Lo atuin.tar.gz https://github.com/atuinsh/atuin/releases/download/v18.4.0/atuin-x86_64-unknown-linux-musl.tar.gz && \
