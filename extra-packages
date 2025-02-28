@@ -2,7 +2,6 @@ age
 #atuin
 bat
 bind-tools
-broot
 btop
 chezmoi
 chezmoi-fish-completion
@@ -20,6 +19,7 @@ eza
 entr
 fastfetch
 fd
+fish
 font-hack-nerd
 fzf
 fzf-bash-plugin
@@ -38,6 +38,7 @@ httpie
 just
 jq
 lazygit
+lsd
 make
 musl-dev
 ncdu
