@@ -33,11 +33,9 @@ RUN curl -L https://github.com/atuinsh/atuin/releases/download/v18.4.0/atuin-x86
   tar -xz --wildcards --no-anchored --strip-components 1 -C /usr/bin/ '*/atuin'
 
 # ble.sh
-RUN curl -Lo ble.tar.xz https://github.com/akinomyoga/ble.sh/releases/download/v0.4.0-devel3/ble-0.4.0-devel3.tar.xz && \
-  mkdir /usr/share/blesh && \
-  tar xJf ble.tar.xz -C /usr/share/blesh && \
-  mv /usr/share/blesh/ble-0.4.0-devel3/* /usr/share/blesh && \
-  rm -f ble.tar.xz && rmdir /usr/share/blesh/ble-0.4.0-devel3
+RUN mkdir /usr/share/blesh && \
+  curl -L https://github.com/akinomyoga/ble.sh/releases/download/v0.4.0-devel3/ble-0.4.0-devel3.tar.xz |  \
+  tar -xJ -C /usr/share/blesh --strip-components 1
 
 # Cheat
 RUN curl -Lo  cheat-linux-amd64.gz https://github.com/cheat/cheat/releases/download/4.4.2/cheat-linux-amd64.gz \
