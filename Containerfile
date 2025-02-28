@@ -36,7 +36,7 @@ RUN curl -L https://github.com/atuinsh/atuin/releases/download/v18.4.0/atuin-x86
 # ble.sh
 RUN mkdir /usr/share/blesh && \
   curl -L https://github.com/akinomyoga/ble.sh/releases/download/v0.4.0-devel3/ble-0.4.0-devel3.tar.xz | \
-  tar -xJ -C /usr/share/blesh --strip-components 1
+  tar -xJ -C /usr/share/blesh --strip-components 1 --owner=0 --group=0 --no-same-owner --no-same-permissions
 
 # Cheat
 RUN curl -L https://github.com/cheat/cheat/releases/download/4.4.2/cheat-linux-amd64.gz | \
