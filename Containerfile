@@ -35,14 +35,13 @@ RUN curl -L https://github.com/atuinsh/atuin/releases/download/v18.4.0/atuin-x86
 
 # ble.sh
 RUN mkdir /usr/share/blesh && \
-  curl -L https://github.com/akinomyoga/ble.sh/releases/download/v0.4.0-devel3/ble-0.4.0-devel3.tar.xz |  \
+  curl -L https://github.com/akinomyoga/ble.sh/releases/download/v0.4.0-devel3/ble-0.4.0-devel3.tar.xz | \
   tar -xJ -C /usr/share/blesh --strip-components 1
 
 # Cheat
-RUN curl -Lo  cheat-linux-amd64.gz https://github.com/cheat/cheat/releases/download/4.4.2/cheat-linux-amd64.gz \
-  && gunzip cheat-linux-amd64.gz \
-  && chmod +x cheat-linux-amd64 \
-  && mv cheat-linux-amd64 /usr/local/bin/cheat
+RUN curl -L https://github.com/cheat/cheat/releases/download/4.4.2/cheat-linux-amd64.gz | \
+  gunzip - > /usr/local/bin/cheat && \
+  chmod +x /usr/local/bin/cheat
 
 # Lunarvim
 RUN LV_BRANCH='release-1.4/neovim-0.9'  XDG_DATA_HOME='/usr/share' INSTALL_PREFIX='/usr' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.4/neovim-0.9/utils/installer/install.sh) --no-install-dependencies --yes && \
